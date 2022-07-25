@@ -14,11 +14,14 @@ const Form1 = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    // setUser({
-    //   name: event.target[0].value,
-    //   lastName: event.target[2].value
-    // })
-    // console.log(setUser)
+    const name = event.target[0].value;
+    const lastName = event.target[2].value;
+
+    setUser({
+      name: name,
+      lastName: lastName
+    })
+    
     setStep(1)
   }
 

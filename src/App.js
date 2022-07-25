@@ -18,18 +18,20 @@ import TableData from './components/Table'
 
 const App = () => {
   const [ step, setStep ] = useState(0)
-  // const [ user, setUser ] = useState({})
+  const [ user, setUser ] = useState({})
   
   const steps = [
     {
       label: 'Paso 1',
-      componente: <Form1 setStep={setStep}/>
+      componente: <Form1 setStep={setStep} setUser={setUser}/>
     },
     {
       label: 'Paso 2',
-      componente: <Form2 setStep={setStep}/>
+      componente: <Form2 setStep={setStep} setUser={setUser} user/>
     }
   ]
+
+  console.log(user)
 
   return (
     <Container

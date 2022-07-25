@@ -6,22 +6,24 @@ import {
 import useFormStyles from '../styles/useFormFields'
 
 const Form2 = (props) => {
-  const { setStep } = props;
+  const { 
+    setStep,
+    setUser
+  } = props;
+
   const classes = useFormStyles()
 
   const onSubmit = (event) => {
     event.preventDefault()
-  }
+    const email = event.target[0].value;
+    const phoneNumber = event.target[2].value;
+    const cc = event.target[4].value;
 
-  const handleEmail = (e) => {
-    if (e.target.value !== '@') {
-      console.log('Falta el @')
-    } else if (e.target.value.lenght < 7) {
-      console.log('demasiado corto')
-    } else if (e.target.value !== '.') {
-      console.log('falta .')
-    }
-
+    setUser({
+      email: email,
+      phoneNumber: phoneNumber,
+      cc: cc
+    })
   }
 
   return (
@@ -36,9 +38,9 @@ const Form2 = (props) => {
         id="email"
         label="E-mail"
         defaultValue={''}
-        onChange={(e) => {
-          handleEmail(e)
-        }}
+        // onChange={(e) => {
+        //   handleEmail(e)
+        // }}
       />
       <TextField
         className={classes.formField}
