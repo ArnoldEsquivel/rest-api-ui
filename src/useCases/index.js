@@ -23,4 +23,32 @@ const getOneUser = async (id) => {
     }
 }
 
-const updateUser = async ()
+const updateUser = async (id, userData) => {
+    const { 
+        name,
+        lastName,
+        email,
+        phoneNumber,
+        cc 
+    } = userData
+
+    try {
+        await axios.patch(url+'/'+id, {
+            name: name,
+            lastName: lastName,
+            email: email,
+            phoneNumber: phoneNumber,
+            cc: cc
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const deleteUser = async (id) => {
+    try {
+        await axios.delete(url+'/'+id)
+    } catch (err) {
+        console.log(err)
+    }
+}
