@@ -5,7 +5,8 @@ import {
 
 import useFormStyles from '../styles/useFormFields'
 
-const Form2 = ({ setStep = () => {} }) => {
+const Form2 = (props) => {
+  const { setStep } = props;
   const classes = useFormStyles()
 
   const onSubmit = (event) => {

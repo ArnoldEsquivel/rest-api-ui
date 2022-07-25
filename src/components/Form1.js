@@ -5,8 +5,9 @@ import {
 
 import useFormStyles from '../styles/useFormFields'
 
-const Form1 = ({ setStep = () => {} }) => {
+const Form1 = (props) => {
   const classes = useFormStyles()
+  const { setStep } = props;
 
   const onSubmit = (event) => {
     event.preventDefault()
@@ -37,6 +38,7 @@ const Form1 = ({ setStep = () => {} }) => {
       <Button
         variant="contained"
         type="submit"
+        onClick={() => setStep(1)}
       >
         Siguiente
       </Button>
