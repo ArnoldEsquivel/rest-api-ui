@@ -1,6 +1,5 @@
 import {
-  useState,
-  cloneElement
+  useState
 } from 'react'
 
 import {
@@ -18,7 +17,8 @@ import TableData from './components/Table'
 
 
 const App = () => {
-  const [step, setStep] = useState(0)
+  const [ step, setStep ] = useState(0)
+  // const [ user, setUser ] = useState({})
   
   const steps = [
     {

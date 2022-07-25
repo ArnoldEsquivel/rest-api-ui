@@ -13,6 +13,17 @@ const Form2 = (props) => {
     event.preventDefault()
   }
 
+  const handleEmail = (e) => {
+    if (e.target.value !== '@') {
+      console.log('Falta el @')
+    } else if (e.target.value.lenght < 7) {
+      console.log('demasiado corto')
+    } else if (e.target.value !== '.') {
+      console.log('falta .')
+    }
+
+  }
+
   return (
     <form
       onSubmit={onSubmit}
@@ -25,6 +36,9 @@ const Form2 = (props) => {
         id="email"
         label="E-mail"
         defaultValue={''}
+        onChange={(e) => {
+          handleEmail(e)
+        }}
       />
       <TextField
         className={classes.formField}

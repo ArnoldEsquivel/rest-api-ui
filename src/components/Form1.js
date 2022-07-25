@@ -7,11 +7,18 @@ import useFormStyles from '../styles/useFormFields'
 
 const Form1 = (props) => {
   const classes = useFormStyles()
-  const { setStep } = props;
+  const { 
+    setStep,
+    setUser
+  } = props;
 
   const onSubmit = (event) => {
     event.preventDefault()
-
+    // setUser({
+    //   name: event.target[0].value,
+    //   lastName: event.target[2].value
+    // })
+    // console.log(setUser)
     setStep(1)
   }
 
@@ -38,7 +45,6 @@ const Form1 = (props) => {
       <Button
         variant="contained"
         type="submit"
-        onClick={() => setStep(1)}
       >
         Siguiente
       </Button>
