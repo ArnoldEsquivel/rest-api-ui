@@ -2,13 +2,15 @@ import {
   TextField,
   Button
 } from '@mui/material'
-
 import useFormStyles from '../styles/useFormFields'
 import { useForm } from '../hooks/useForm'
 
 const Form1 = ({ setUser, setStep, user }) => {
   const classes = useFormStyles()
-  const [values, handleInputChange] = useForm({name: user.name, lastName: user.lastName})
+  const [values, handleInputChange] = useForm({
+    name: user.name,
+    lastName: user.lastName
+  })
 
   const onSubmit = (event) => {
     event.preventDefault()
@@ -19,6 +21,8 @@ const Form1 = ({ setUser, setStep, user }) => {
     }))
     
     setStep(1)
+
+    console.log(user)
   }
 
   return (

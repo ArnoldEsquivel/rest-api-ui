@@ -12,7 +12,7 @@ const createUser = (name, lastName, email, phoneNumber, cc) => {
 };
 
 const getOneUser = (id) => {
-    return await axios.get(`${url}/${id}`)
+    return axios.get(`${url}/${id}`)
 };
 
 const updateUser = (id, userData) => {
@@ -33,7 +33,7 @@ const updateUser = (id, userData) => {
     })
 };
 
-const deleteUser = async (id) => {
+const deleteUser = (id) => {
     return axios.delete(`${url}/${id}`)
 };
 

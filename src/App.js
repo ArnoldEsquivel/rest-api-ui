@@ -29,9 +29,7 @@ const App = () => {
       label: 'Paso 2',
       componente: <Form2 setStep={setStep} setUser={setUser} user={user}/>
     }
-  ]
-
-  console.log(user)
+  ];
 
   return (
     <Container
