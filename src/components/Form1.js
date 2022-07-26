@@ -2,15 +2,24 @@ import {
   TextField,
   Button
 } from '@mui/material'
-
 import useFormStyles from '../styles/useFormFields'
+import { useForm } from '../hooks/useForm'
 
-const Form1 = ({ setStep = () => {} }) => {
+const Form1 = ({ setUser, setStep, user }) => {
   const classes = useFormStyles()
+  const [values, handleInputChange] = useForm({
+    name: user.name,
+    lastName: user.lastName
+  })
 
   const onSubmit = (event) => {
     event.preventDefault()
 
+    setUser((prep) => ({
+      ...prep,
+      ...values
+    }))
+    
     setStep(1)
   }
 
@@ -24,7 +33,10 @@ const Form1 = ({ setStep = () => {} }) => {
         required
         id="name"
         label="Nombre"
-        defaultValue={''}
+        name='name'
+        onChange={handleInputChange}
+        value={values.name}
+
       />
       <TextField
         className={classes.formField}
@@ -32,7 +44,9 @@ const Form1 = ({ setStep = () => {} }) => {
         required
         id="name"
         label="Apellido"
-        defaultValue={''}
+        name='lastName'
+        onChange={handleInputChange}
+        value={values.lastName}
       />
       <Button
         variant="contained"

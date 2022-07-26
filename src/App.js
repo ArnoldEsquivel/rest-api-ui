@@ -1,6 +1,5 @@
 import {
-  useState,
-  cloneElement
+  useState
 } from 'react'
 
 import {
@@ -12,24 +11,25 @@ import {
   Grid
 } from '@mui/material'
 
-
 import Form1 from './components/Form1'
 import Form2 from './components/Form2'
 import TableData from './components/Table'
 
-const steps = [
-  {
-    label: 'Paso 1',
-    componente: <Form1 />
-  },
-  {
-    label: 'Paso 2',
-    componente: <Form2 />
-  }
-]
 
 const App = () => {
-  const [step, setStep] = useState(0)
+  const [ step, setStep ] = useState(0)
+  const [ user, setUser ] = useState({})
+  
+  const steps = [
+    {
+      label: 'Paso 1',
+      componente: <Form1 setStep={setStep} setUser={setUser} user={user}/>
+    },
+    {
+      label: 'Paso 2',
+      componente: <Form2 setStep={setStep} setUser={setUser} user={user}/>
+    }
+  ];
 
   return (
     <Container

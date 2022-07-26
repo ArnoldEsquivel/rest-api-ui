@@ -2,14 +2,34 @@ import {
   TextField,
   Button
 } from '@mui/material'
-
+import { useForm } from '../hooks/useForm'
+import { createUser } from '../useCases/index'
 import useFormStyles from '../styles/useFormFields'
 
-const Form2 = ({ setStep = () => {} }) => {
+const Form2 = ({ setUser, setStep, user }) => {
   const classes = useFormStyles()
+  const [values, handleInputChange, reset] = useForm({
+    email: user.email,
+    phoneNumber: user.phoneNumber,
+    cc: user.cc
+  })
 
   const onSubmit = (event) => {
     event.preventDefault()
+    
+    setUser((prep) => ({
+      ...prep,
+      ...values
+    }))
+    createUser(
+      user.name,
+      user.lastName,
+      values.email,
+      values.phoneNumber,
+      values.cc
+    )
+    setStep(0)
+    reset()
   }
 
   return (
@@ -23,7 +43,9 @@ const Form2 = ({ setStep = () => {} }) => {
         type="email"
         id="email"
         label="E-mail"
-        defaultValue={''}
+        name='email'
+        onChange={handleInputChange}
+        value={values.email}
       />
       <TextField
         className={classes.formField}
@@ -31,7 +53,9 @@ const Form2 = ({ setStep = () => {} }) => {
         required
         id="phoneNumber"
         label="Teléfono"
-        defaultValue={''}
+        name='phoneNumber'
+        onChange={handleInputChange}
+        value={values.phoneNumber}
       />
       <TextField
         className={classes.formField}
@@ -40,7 +64,9 @@ const Form2 = ({ setStep = () => {} }) => {
         type="number"
         id="cc"
         label="Documento de identidad"
-        defaultValue={''}
+        name='cc'
+        onChange={handleInputChange}
+        value={values.cc}
       />
       <Button
         className={classes.formButtons}
