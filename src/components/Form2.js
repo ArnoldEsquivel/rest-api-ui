@@ -16,12 +16,18 @@ const Form2 = ({ setUser, setStep, user }) => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-
+    
     setUser((prep) => ({
       ...prep,
       ...values
     }))
-    console.log(user)
+    createUser(
+      user.name,
+      user.lastName,
+      values.email,
+      values.phoneNumber,
+      values.cc
+    )
     setStep(0)
     reset()
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { updateUser } from '../useCases/index'
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,7 +12,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 export default function EditUserInfo(props) {
     const [ loading, setLoading ] = useState(false)
     let [ infoUser, setInfoUser ] = useState({})
-    const url = process.env.REACT_APP_USERS_URL;
 
     const { 
         open,
@@ -25,10 +24,8 @@ export default function EditUserInfo(props) {
     }, [user._id])
 
     const ChangeUserInfo = async () => {
-        const { id } = user._id;
         setLoading(true)
-
-        await axios.put(`${url}/${id}`, infoUser)
+        updateUser(user._id, infoUser)
         onClose()
         setLoading(false)
     }
@@ -48,12 +45,18 @@ export default function EditUserInfo(props) {
                 {"Change User Info"}
             </DialogTitle>
             <DialogContent
-                sx={{display: 'flex'}}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    overflowX: 'hidden'
+                }}
             >
                 <TextField 
                     id='name'
                     label='Name'
                     sx={{margin: '12px'}}
+                    fullWidth
                     defaultValue={user.name}
                     onChange={changeDataUser}
                 />
@@ -61,6 +64,7 @@ export default function EditUserInfo(props) {
                     id='lastName'
                     label='Last Name'
                     sx={{margin: '12px'}}
+                    fullWidth
                     defaultValue={user.lastName}
                     onChange={changeDataUser}
                 />
@@ -68,6 +72,7 @@ export default function EditUserInfo(props) {
                     id='email'
                     label='E-Mail'
                     sx={{margin: '12px'}}
+                    fullWidth
                     defaultValue={user.email}
                     onChange={changeDataUser}
                 />
@@ -75,6 +80,7 @@ export default function EditUserInfo(props) {
                     id='phoneNumber'
                     label='Phone Number'
                     sx={{margin: '12px'}}
+                    fullWidth
                     defaultValue={user.phoneNumber}
                     onChange={changeDataUser}
                 />
@@ -82,6 +88,7 @@ export default function EditUserInfo(props) {
                     id='cc'
                     label='CC'
                     sx={{margin: '12px'}}
+                    fullWidth
                     defaultValue={user.cc}
                     onChange={changeDataUser}
                 />

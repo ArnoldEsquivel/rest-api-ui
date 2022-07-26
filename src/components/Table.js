@@ -10,16 +10,26 @@ import {
 } from '@mui/material'
 import Button from '@mui/material/Button'
 import useUsers from '../hooks/useUsers'
-import { deleteUser } from '../useCases/index'
 import EditUserInfo from './EditUserInfo'
+import TheAlert from './Alert'
 
 const TableData = () => {
   const { users } = useUsers()
-  const [open, setOpen] = useState(false);
-  const [userSelected, setUserSelected] = useState({});
+  const [open, setOpen] = useState(false)
+  const [openAlert, setOpenAlert] = useState(false)
+  const [userSelected, setUserSelected] = useState({})
 
   const handleClose = () => {
     setOpen(!open);
+  };
+
+  const handleCloseAlert = () => {
+    setOpenAlert(!openAlert);
+  };
+
+  const handleDeleteUser = (user) => {
+    setOpenAlert(!openAlert);
+    setUserSelected(user)
   };
 
   const handleStatusUser = (user) => {
@@ -32,6 +42,11 @@ const TableData = () => {
       <EditUserInfo 
         open={open}
         onClose={handleClose}
+        user={userSelected}
+      />
+      <TheAlert 
+        open={openAlert}
+        onClose={handleCloseAlert}
         user={userSelected}
       />
       <TableContainer
@@ -101,7 +116,7 @@ const TableData = () => {
                     color='error'
                     size='small'
                     onClick={() => {
-                      deleteUser(user._id)
+                      handleDeleteUser(user)
                     }}
                   >
                     Delete

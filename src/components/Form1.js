@@ -21,8 +21,6 @@ const Form1 = ({ setUser, setStep, user }) => {
     }))
     
     setStep(1)
-
-    console.log(user)
   }
 
   return (
