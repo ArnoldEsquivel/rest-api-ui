@@ -23,11 +23,11 @@ const App = () => {
   const steps = [
     {
       label: 'Paso 1',
-      componente: <Form1 setStep={setStep} setUser={setUser}/>
+      componente: <Form1 setStep={setStep} setUser={setUser} user={user}/>
     },
     {
       label: 'Paso 2',
-      componente: <Form2 setStep={setStep} setUser={setUser} user/>
+      componente: <Form2 setStep={setStep} setUser={setUser} user={user}/>
     }
   ]
 

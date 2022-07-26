@@ -1,29 +1,21 @@
 import axios from 'axios'
 const url = process.env.REACT_APP_USERS_URL;
 
-const createUser = async (name, lastName, email, phoneNumber, cc) => {
-    try {
-        await axios.post(url, {
-            name: name,
-            lastName: lastName,
-            email: email,
-            phoneNumber: phoneNumber,
-            cc: cc
-        })
-    } catch (err) {
-        console.log(err)
-    }
-}
+const createUser = (name, lastName, email, phoneNumber, cc) => {
+    return axios.post(url, {
+        name: name,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+        cc: cc
+    })
+};
 
-const getOneUser = async (id) => {
-    try {
-        await axios.get(url+'/'+id)
-    } catch (err) {
-        console.log(err)
-    }
-}
+const getOneUser = (id) => {
+    return await axios.get(`${url}/${id}`)
+};
 
-const updateUser = async (id, userData) => {
+const updateUser = (id, userData) => {
     const { 
         name,
         lastName,
@@ -32,23 +24,22 @@ const updateUser = async (id, userData) => {
         cc 
     } = userData
 
-    try {
-        await axios.patch(url+'/'+id, {
-            name: name,
-            lastName: lastName,
-            email: email,
-            phoneNumber: phoneNumber,
-            cc: cc
-        })
-    } catch (err) {
-        console.log(err)
-    }
-}
+    return axios.patch(`${url}/${id}`, {
+        name: name,
+        lastName: lastName,
+        email: email,
+        phoneNumber: phoneNumber,
+        cc: cc
+    })
+};
 
 const deleteUser = async (id) => {
-    try {
-        await axios.delete(url+'/'+id)
-    } catch (err) {
-        console.log(err)
-    }
-}
+    return axios.delete(`${url}/${id}`)
+};
+
+export {
+    createUser,
+    getOneUser,
+    updateUser,
+    deleteUser
+};

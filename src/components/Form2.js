@@ -19,11 +19,12 @@ const Form2 = (props) => {
     const phoneNumber = event.target[2].value;
     const cc = event.target[4].value;
 
-    setUser({
-      email: email,
-      phoneNumber: phoneNumber,
-      cc: cc
-    })
+    setUser((prep) => ({
+      ...prep,
+      email,
+      phoneNumber,
+      cc
+    }))
   }
 
   return (
@@ -38,9 +39,6 @@ const Form2 = (props) => {
         id="email"
         label="E-mail"
         defaultValue={''}
-        // onChange={(e) => {
-        //   handleEmail(e)
-        // }}
       />
       <TextField
         className={classes.formField}
